@@ -37,6 +37,6 @@ model DesignSettings {
 model Product {
   id       String      @id
   title    String
-  designs  String
-  colors   String
+  designs  String?
+  colors   String?
 }

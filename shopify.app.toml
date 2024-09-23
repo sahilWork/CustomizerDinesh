@@ -3,7 +3,7 @@
 client_id = "c4e4dd590ef2ca2e5052b23a0e0b22c6"
 name = "Product Customizer"
 handle = "product-customizer-92"
-application_url = "https://using-cad-psychological-blond.trycloudflare.com"
+application_url = "https://rise-tier-summary-usda.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://using-cad-psychological-blond.trycloudflare.com/auth/callback",
-  "https://using-cad-psychological-blond.trycloudflare.com/auth/shopify/callback",
-  "https://using-cad-psychological-blond.trycloudflare.com/api/auth/callback"
+  "https://rise-tier-summary-usda.trycloudflare.com/auth/callback",
+  "https://rise-tier-summary-usda.trycloudflare.com/auth/shopify/callback",
+  "https://rise-tier-summary-usda.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
