@@ -1,0 +1,56 @@
+
+  ERROR  Too many re-renders. React limits the number of renders to prevent an
+        infinite loop.
+
+ file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/chunk-OK6RFX7
+ A.js:20399:23
+
+ -renderWithHo (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dis
+  ks          t/chunk-OK6RFX7A.js:20399:23)
+ -updateForward (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/di
+  Ref          st/chunk-OK6RFX7A.js:22548:28)
+ -beginWor (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/ch
+          unk-OK6RFX7A.js:24155:22)
+ -beginWork$ (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/
+            chunk-OK6RFX7A.js:28645:22)
+ -performUnitOfW (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/d
+  rk            ist/chunk-OK6RFX7A.js:28093:20)
+ -workLoopSy (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/
+  c         chunk-OK6RFX7A.js:28029:13)
+ -renderRootSy (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dis
+  c           t/chunk-OK6RFX7A.js:28008:15)
+ -performSyncWorkO (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli
+  Root            /dist/chunk-OK6RFX7A.js:27735:28)
+ -flushSyncCallb (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/d
+  cks           ist/chunk-OK6RFX7A.js:17162:30)
+ -flushSyncCallbacksOnlyI (file:///Users/ios/.npm-global/lib/node_modules/@shop
+  LegacyMode             ify/cli/dist/chunk-OK6RFX7A.js:17147:13)
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G
+  ERROR  Too many re-renders. React limits the number of renders to prevent an
+        infinite loop.
+
+ file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/chunk-OK6RFX7
+ A.js:20399:23
+
+ -renderWithHo (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dis
+  ks          t/chunk-OK6RFX7A.js:20399:23)
+ -updateForward (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/di
+  Ref          st/chunk-OK6RFX7A.js:22548:28)
+ -beginWor (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/ch
+          unk-OK6RFX7A.js:24155:22)
+ -beginWork$ (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/
+            chunk-OK6RFX7A.js:28645:22)
+ -performUnitOfW (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/d
+  rk            ist/chunk-OK6RFX7A.js:28093:20)
+ -workLoopSy (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dist/
+  c         chunk-OK6RFX7A.js:28029:13)
+ -renderRootSy (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/dis
+  c           t/chunk-OK6RFX7A.js:28008:15)
+ -performSyncWorkO (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli
+  Root            /dist/chunk-OK6RFX7A.js:27735:28)
+ -flushSyncCallb (file:///Users/ios/.npm-global/lib/node_modules/@shopify/cli/d
+  cks           ist/chunk-OK6RFX7A.js:17162:30)
+ -flushSyncCallbacksOnlyI (file:///Users/ios/.npm-global/lib/node_modules/@shop
+  LegacyMode             ify/cli/dist/chunk-OK6RFX7A.js:17147:13)
+
