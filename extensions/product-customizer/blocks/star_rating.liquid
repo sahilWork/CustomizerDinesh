@@ -1,21 +1,84 @@
 {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
-<span style="color:{{ block.settings.colour }}">
-  {% render 'stars', rating: avg_rating %}
-</span>
-{% if avg_rating >= 4 %}
-  <br>
-  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
-  {{ 'ratings.home.recommendationText' | t }}
-{% endif %}
+<button id="ratingButton" style="color:{{ block.settings.colour }}; background-color:{{ block.settings.bg_colour }}; width: 250px; height: 50px; cursor: pointer;">
+ Customize
+</button>
+
+<div id="ratingPopup" style="display:none; border: 1px solid #ccc; padding: 20px; background: #fff; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; width: 400px; height: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+  
+  <div id="productData" style="margin-bottom: 20px;">
+   
+  </div>
+  <button id="closePopup" style="padding: 10px 20px; border: none; background-color: {{ block.settings.bg_colour }}; color: {{ block.settings.colour }}; border-radius: 5px; cursor: pointer;">
+    Close
+  </button>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#ratingButton').hide(); // Initially hide the button
+    
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json" // Adjust based on your API requirements
+      },
+      body: JSON.stringify({ /* Your request payload here */ }), 
+      redirect: "follow"
+    };
+
+    fetch("https://707d-2405-201-5004-7835-5147-5a3d-4792-f0cb.ngrok-free.app/api/frontendgetpro", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const lastUrlSegment = window.location.pathname.split('/').pop(); 
+        console.log(lastUrlSegment);
+        const productTitles = result.products.map(product => product.title); 
+        const isMatch = productTitles.includes(lastUrlSegment);
+
+        // Show or hide the Customize button based on the match
+        if (isMatch) {
+         
+          $('#ratingButton').show(); // Show the button
+        } else {
+          $('#ratingButton').hide(); // Hide the button
+        }
+
+          const productDataDiv = $('#productData');
+          productDataDiv.empty(); // Clear previous content
+
+          result.products.forEach(product => {
+          const productInfo = `
+            <div style="margin-bottom: 10px;">
+              <h4>${product.title}</h4>
+              <p>Design: ${product.designs || 'N/A'}</p>
+              <p>Color: ${product.colors || 'N/A'}</p>
+            </div>
+          `;
+          productDataDiv.append(productInfo); // Append product info to the div
+          });
+
+      })
+      .catch((error) => console.error(error));
+    
+    $('#ratingButton').on('click', function() {
+      $('#ratingPopup').show(); // Show the popup
+    });
+
+    $('#closePopup').on('click', function() {
+      $('#ratingPopup').hide(); // Hide the popup
+    });
+  });
+</script>
 
 {% schema %}
 {
-  "name": "Star Rating",
+  "name": "Star Rating Button",
   "target": "section",
   "settings": [
-    { "type": "product", "id": "product", "label": "product", "autofill": true },
-    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+    { "type": "color", "id": "colour", "label": "Text Color", "default": "#ff0000" },
+    { "type": "color", "id": "bg_colour", "label": "Background Color", "default": "#ffffff" },
+    
   ]
 }
 {% endschema %}
-
