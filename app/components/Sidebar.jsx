@@ -1,5 +1,6 @@
+// app/components/Sidebar.jsx
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -7,8 +8,7 @@ const Sidebar = () => {
       <ul style={styles.menu}>
         <li><Link to="/app" style={styles.link}>Dashboard</Link></li>
         <li><Link to="/settings" style={styles.link}>Settings</Link></li>
-        <li><Link to="/porductlisting" style={styles.link}>Products</Link></li>
-        {/* Add more links as needed */}
+        <li><Link to="/products" style={styles.link}>Products</Link></li>
       </ul>
     </nav>
   );
@@ -21,11 +21,11 @@ const styles = {
     backgroundColor: '#f4f4f4',
     borderRight: '1px solid #ddd',
     height: '100vh',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
   },
   menu: {
     listStyleType: 'none',
-    padding: 0
+    padding: 0,
   },
   link: {
     textDecoration: 'none',
@@ -33,8 +33,8 @@ const styles = {
     display: 'block',
     padding: '0.5rem 1rem',
     borderRadius: '4px',
-    transition: 'background 0.3s'
-  }
+    transition: 'background 0.3s',
+  },
 };
 
 export default Sidebar;

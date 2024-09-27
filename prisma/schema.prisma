@@ -29,14 +29,21 @@ model ColorSettings {
   id         String @id
   colorGroup String
 }
+
 model DesignSettings {
-  id         String @id
+  id          String @id
   designGroup String
 }
 
 model Product {
-  id       String      @id
-  title    String
-  designs  String?
-  colors   String?
+  id      String  @id
+  title   String
+  designs String?
+  colors  String?
+}
+
+model Logos {
+  id          String  @id
+  imagepath   String?
+  filename    String?
 }

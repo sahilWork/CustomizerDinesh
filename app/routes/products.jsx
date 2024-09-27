@@ -32,7 +32,7 @@ const ProductListing = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('/api/getproducts');
+                const response = await fetch('/api/getproshopify');
                 const data = await response.json();
                 setProducts(data.products);
             } catch (error) {
