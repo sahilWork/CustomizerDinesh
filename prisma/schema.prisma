@@ -47,3 +47,10 @@ model Logos {
   imagepath   String?
   filename    String?
 }
+model Images {
+  id       Int     @id @default(autoincrement())
+  svgName  String? 
+  svgFile  String?
+  shopName String?
+}
+
