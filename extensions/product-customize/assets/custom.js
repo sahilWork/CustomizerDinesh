@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    let tunnelUrl = 'https://9ea7-2405-201-5004-7835-19df-1540-c511-4132.ngrok-free.app';
+    let tunnelUrl = 'https://b596-2405-201-5004-7835-c0ee-cd3f-4080-6d6f.ngrok-free.app';
 
     function fetchSVG(url, container) {
         var xhr = new XMLHttpRequest();
@@ -112,6 +112,7 @@ $(document).ready(function(){
         const isMatch = productTitles.includes(lastUrlSegment);
 
         if (isMatch) {
+            
             $('#ratingButton').show(); // Show the button
         } else {
             $('#ratingButton').hide(); // Hide the button
@@ -126,8 +127,9 @@ $(document).ready(function(){
         result.products.forEach(product => {
             if (product.title.toLowerCase() === lastUrlSegment.toLowerCase()) {
                 const designs = product.designs || 'N/A';
-                const colors = product.colors || 'N/A';
-                
+                const colors = product.colors || 'N/A'; 
+               
+                $('.product-design-name').html(product.title.toUpperCase());
                 // Splitting the designs and colors by commas
                 const designArray = designs.split(',').map(design => design.trim());
                 const colorArray = colors.split(',').map(color => color.trim());
@@ -196,7 +198,7 @@ $(document).ready(function(){
             $('svg.'+getLink+' .svgText').attr('fill', selectedColor);
         });
 
-        $('#textInput').on('input', function() {
+        $('#customTextName').on('input', function() {
             const userInput = $(this).val();
             let getLink = $('.designLink.active').attr('link');
             $('svg.'+getLink+' .svgText').text(userInput);  
@@ -269,10 +271,30 @@ $(document).ready(function(){
         });
 
         $('body').on('click', '.designLink', function(){
+            let rightSvg = '150-150-42-50';
+            let leftSvg = '150-150-50-45';
+            let linkData = $(this).attr('link');
+            let indexGet = $('svg.'+linkData).parent().attr('data-slick-index');
+            $('#svg-slider').slick('slickGoTo', indexGet);
             $('.designLink').removeClass('active'); 
             $(this).addClass('active');
             $('.menu-design').show();
             $('.custom-text').show();
+            setTimeout(function(){
+                if(linkData.indexOf('right') > -1){
+                    let positions = rightSvg.split('-');
+                    $('svg.'+linkData+' .custom-logo').attr('width', positions[0]);
+                    $('svg.'+linkData+' .custom-logo').attr('height', positions[1]);
+                    $('svg.'+linkData+' .custom-logo').attr('x', positions[2]+'%');
+                    $('svg.'+linkData+' .custom-logo').attr('y', positions[3]+'%'); 
+                }else if(linkData.indexOf('left') > -1){
+                    let positions = leftSvg.split('-');
+                    $('svg.'+linkData+' .custom-logo').attr('width', positions[0]);
+                    $('svg.'+linkData+' .custom-logo').attr('height', positions[1]);
+                    $('svg.'+linkData+' .custom-logo').attr('x', positions[2]+'%');
+                    $('svg.'+linkData+' .custom-logo').attr('y', positions[3]+'%'); 
+                }
+        }, 1000);
         });
 
         $('body').on('change', '#colorPicker', function(){
@@ -282,10 +304,10 @@ $(document).ready(function(){
             getId = getId.split('Group_')[1];
             $('#Pattern_'+getId+'_000 path').attr('fill', colorName);
         });
-
+ 
         $('.color-list').on('click', '.icon-color-wrapper', function() {
-            // Remove selected class from all and add to the clicked one
-            $('.icon-color-wrapper').removeClass('selected');
+            // Remove selected class from all and add to the clicked one 
+            $('.icon-color-wrapper').removeClass('selected');   
             var titleColor = $(this).attr('title'); 
             $('.colour-selected-label').text(titleColor);
             $(this).addClass('selected');
@@ -300,6 +322,15 @@ $(document).ready(function(){
 
             // Change the fill color of the SVG path
             $('#Pattern_'+getId+'_000 path').attr('fill', colorName);
+        });
+
+        $('body').on('click', '.dynamicColor a', function() {
+            $('.icon-color-wrapper').removeClass('selected');   
+            var titleColor = $(this).attr('title');
+            $(this).addClass('selected');
+            var colorName = $(this).find('.back').css('background-color');
+            var link = $('.designLink.active').attr('link');
+            $('svg.'+link+' .svgText').attr('fill', colorName);
         });
 
         jQuery('product-info .product__info-wrapper button#ratingButton').click(function() {
@@ -321,4 +352,50 @@ $(document).ready(function(){
                 jQuery('div.shopify-section.section-header').show();
             }
         });
+
+        // $('body').on('click', '.addMine', function(){
+        //     let svgMine = $('svg.sleeve-right').parent().html();
+        //     // $('.estimatedItem form').prepend('<input type="hidden" name="properties[SVG Image]" value="'+svgMine+'" />');
+        //     var svg = $('svg.sleeve-right').prop('outerHTML');
+
+        //     // Create a Blob from the SVG string
+        //     var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+
+        //     // Create a URL for the Blob
+        //     var url = URL.createObjectURL(blob);
+        //     console.log(url); 
+        // });
+
+        $('body').on('click', '.addMine', function() {
+            const classes = ['.front-center', '.sleeve-left', '.back-center', '.sleeve-right'];
+            const urls = [];
+        
+            classes.forEach((className) => {
+                var svg = $(className).prop('outerHTML');
+                var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+                var url = URL.createObjectURL(blob);
+                urls.push(url);
+                console.log(`URL for ${className}: ${url}`);
+            });
+            console.log('All URLs:', urls);
+        });
     });
+
+    function increaseQuantity() {
+        var qtyInput = document.getElementById('quantity');
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+    }
+
+    function decreaseQuantity() {
+        var qtyInput = document.getElementById('quantity');
+        if (qtyInput.value > 1) {
+            qtyInput.value = parseInt(qtyInput.value) - 1;
+        }
+    }
+
+    function validateQuantity() {
+        var qtyInput = document.getElementById('quantity');
+        if (qtyInput.value < 50) {
+            qtyInput.value = 50;
+        }
+    }

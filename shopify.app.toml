@@ -3,7 +3,7 @@
 client_id = "c4e4dd590ef2ca2e5052b23a0e0b22c6"
 name = "Product Customizer"
 handle = "product-customizer-92"
-application_url = "https://9ea7-2405-201-5004-7835-19df-1540-c511-4132.ngrok-free.app"
+application_url = "https://b596-2405-201-5004-7835-c0ee-cd3f-4080-6d6f.ngrok-free.app"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_products,read_themes,write_products,write_themes"
 
 [auth]
 redirect_urls = [
-  "https://9ea7-2405-201-5004-7835-19df-1540-c511-4132.ngrok-free.app/auth/callback",
-  "https://9ea7-2405-201-5004-7835-19df-1540-c511-4132.ngrok-free.app/auth/shopify/callback",
-  "https://9ea7-2405-201-5004-7835-19df-1540-c511-4132.ngrok-free.app/api/auth/callback"
+  "https://b596-2405-201-5004-7835-c0ee-cd3f-4080-6d6f.ngrok-free.app/auth/callback",
+  "https://b596-2405-201-5004-7835-c0ee-cd3f-4080-6d6f.ngrok-free.app/auth/shopify/callback",
+  "https://b596-2405-201-5004-7835-c0ee-cd3f-4080-6d6f.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

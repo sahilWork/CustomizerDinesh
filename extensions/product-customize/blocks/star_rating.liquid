@@ -59,7 +59,7 @@
         <label for="customTextName">Custom Name</label>
         <input type="text" name="customName" id="customTextName" />
       </div>
-      <div class="color-list dynamicColor">
+      <div class="dynamicColor">
         <a title="White" class="dynamicNameColor"><div class="back" style="background: rgb(255, 255, 255);"></div></a><a title="Black" class="icon-color-wrapper selected"><div class="back" style="background: rgb(23, 23, 23);"></div></a><a title="Dark Grey" class="icon-color-wrapper "><div class="back" style="background: rgb(83, 87, 90);"></div></a><a title="Light Grey" class="icon-color-wrapper "><div class="back" style="background: rgb(152, 152, 154);"></div></a><a title="Brown" class="icon-color-wrapper "><div class="back" style="background: rgb(80, 54, 41);"></div></a><a title="Dark Green" class="icon-color-wrapper "><div class="back" style="background: rgb(18, 71, 52);"></div></a><a title="Green" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 117, 74);"></div></a><a title="Lime Green" class="icon-color-wrapper "><div class="back" style="background: rgb(118, 188, 33);"></div></a><a title="Midnight Teal" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 89, 88);"></div></a><a title="Teal" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 137, 150);"></div></a><a title="Navy" class="icon-color-wrapper "><div class="back" style="background: rgb(32, 41, 69);"></div></a><a title="Royal Blue" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 87, 163);"></div></a><a title="Sky Blue" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 154, 222);"></div></a><a title="Light Blue" class="icon-color-wrapper "><div class="back" style="background: rgb(146, 192, 233);"></div></a><a title="Dark Purple" class="icon-color-wrapper "><div class="back" style="background: rgb(81, 12, 118);"></div></a><a title="Maroon" class="icon-color-wrapper "><div class="back" style="background: rgb(114, 37, 61);"></div></a><a title="Dark Red" class="icon-color-wrapper "><div class="back" style="background: rgb(171, 0, 51);"></div></a><a title="Red" class="icon-color-wrapper "><div class="back" style="background: rgb(234, 0, 41);"></div></a><a title="Orange" class="icon-color-wrapper "><div class="back" style="background: rgb(244, 137, 52);"></div></a><a title="Gold Yellow" class="icon-color-wrapper "><div class="back" style="background: rgb(255, 183, 27);"></div></a><a title="Light Yellow" class="icon-color-wrapper "><div class="back" style="background: rgb(252, 220, 62);"></div></a><a title="Vegas Gold" class="icon-color-wrapper "><div class="back" style="background: rgb(201, 181, 119);"></div></a><a title="Off White" class="icon-color-wrapper "><div class="back" style="background: rgb(241, 225, 207);"></div></a><a title="more" class="icon-color-wrapper hidden-pc"><div class="back" style="background: url(&quot;/static/icons/colours/more.svg&quot;) no-repeat;"></div></a>
       </div>
     </div>
@@ -73,9 +73,43 @@
   <div id="svg-slider" class="slider"></div>
   </div>
   <div class="product_detaile">
-  <div class="product-info-tab hidden-mobile"> <div class="dynamic-pricing"><div class="product-design-name">Hoodie</div><div class="recycled-fabrics"><img src="/static/images/recycled.png" width="24" height="23"><span>fabrics</span><div class="help"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div></div><div class="price-info"><div class="price deleted">$79 each<div class="tool-tip production-tip tooltipContainer pc"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div></div><div class="tier-price"><span>$59 each </span><span class="saving">(25% saving)</span></div></div><div class="product-estimatedItemQty"><p class="estimatedItem-title">Estimated quantity</p><div class="estimatedItem"><div class="input-number-block estimatedItemQty-input-part success"><a><img class="icon" src="/static/icons/rectangle.svg"></a><input class="number-input" type="text" value="25"><a><img class="icon" src="/static/icons/rectangle-add.svg"></a></div><div class="estimatedItemQty-hint"><div class="hint-text"><img src="/static/icons/success.svg"><span>25.3% volume discount applied</span></div><div class="hint-text"><img src="/static/icons/info-blue.svg"><span>Add 25 more to get to the next volume discount tier</span></div></div></div></div><div class="total-price"><p class="price">Total: $1,475</p><p class="price-note">Shipping included</p></div></div><div class="order-info"><div class="finish-time"><div class="text"><div class="pmds-label">Production</div><div class="pmds-sub-label">(Weeks)</div></div><div class="tool-tip production-tip tooltipContainer pc"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div><div class="tool-tip production-tip"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div><div class="value">6</div></div><div class="min-order-qty"><div class="text"><div class="pmds-label">Minimum</div><div class="pmds-sub-label">(Units)</div></div><div class="tool-tip minimum-tip tooltipContainer pc"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div><div class="tool-tip minimum-tip"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div><div class="value">10</div></div><div class="ship-to"><div class="text"><div class="pmds-label">Ships to</div></div><div class="tool-tip ship-to-tip tooltipContainer pc"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div><div class="tool-tip ship-to-tip"><img src="/static/icons/info-grey-circle.svg" class="icon" alt=""></div><div class="ship-to-note text-black"><div class="customHtml"> <img src="//images.ctfassets.net/gfajoz35vh9o/1UXRtvZIih0zmAmOtjYNHd/ac2289bf0812b17cc672053d7806bf5e/us.png" class="ship-to-img">US Only</div></div></div></div><div class="help-title"><div class="need-help">Need help or design advice?</div><a href="/help" target="_blank" class="lnk-help">HELP &amp; SUPPORT</a></div></div>
+    <div class="product-info-tab hidden-mobile">
+        <div class="dynamic-pricing">
+            <div class="product-design-name">Hoodie</div>
+            
+            <div class="price-info">
+               
+                <div class="tier-price">Price: {{ product.price | money }} {{ shop.currency }}</div>
+            </div>
+            <div class="product-estimatedItemQty">
+                <p class="estimatedItem-title">Estimated quantity</p>
+                <div class="estimatedItem">
+                  <form action="/cart/add" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
 
-  </div>
+                      <div class="input-number-block estimatedItemQty-input-part success">
+                          <a onclick="decreaseQuantity()">
+                              <img class="icon" src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/rectangle.png">
+                          </a>
+                          <input class="number-input" id="quantity" name="quantity" type="text" value="50" min="50" oninput="validateQuantity()">
+                          <a onclick="increaseQuantity()">
+                              <img class="icon" src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/rectangle-add.png">
+                          </a>
+                      </div>
+                      <div class="save-btn">
+                      <a href="javascript:void(0)" class="addMine">add</a>
+                      <button class="btn" type="submit">Add to Cart</button>
+                      </div>
+                  </form>
+                </div>
+            </div>
+            <div class="total-price">
+                <p class="price">Total: $1,475</p>
+                <p class="price-note">Shipping included</p>
+            </div>
+        </div>
+    </div>
+</div>
   <div class="main-header-btn">
   <div class="close-btn">
   <button id="closePopup">

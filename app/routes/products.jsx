@@ -29,6 +29,11 @@ const ProductListing = () => {
     const [addedProducts, setAddedProducts] = useState([]);
     const [deletePopupVisible, setDeletePopupVisible] = useState(false);
     const [productToDelete, setProductToDelete] = useState(null);
+
+    // Pagination State
+    const [currentPage, setCurrentPage] = useState(0);
+    const recordsPerPage = 10;
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -62,7 +67,6 @@ const ProductListing = () => {
                 console.error('Error fetching products:', error);
             }
         };
-
 
         const fetchDesignSettings = async () => {
             try {
@@ -151,7 +155,6 @@ const ProductListing = () => {
 
             const result = await response.json();
             if (result.success) {
-
                 setBrowsePopupVisible(false);
                 setSuccessPopupVisible(true); // Show popup on success
             } else {
@@ -214,9 +217,13 @@ const ProductListing = () => {
     };
 
     const openDeletePopup = async (productId) => {
+        setProductToDelete(productId); // Store productId for deletion
+        setDeletePopupVisible(true);
+    };
 
+    const confirmDelete = async () => {
         try {
-            const params = `shop=${productId}`;
+            const params = `shop=${productToDelete}`;
             const response = await fetch('/api/proDeleteprisma', {
                 method: 'DELETE',
                 headers: {
@@ -227,19 +234,15 @@ const ProductListing = () => {
 
             const result = await response.json();
             if (result.success) {
-                setAddedProducts((prev) => prev.filter(item => item.id !== productId));
-                setDeletePopupVisible(true);
+                setAddedProducts((prev) => prev.filter(item => item.id !== productToDelete));
+                setDeletePopupVisible(false);
             } else {
                 console.error('Error deleting product.');
             }
         } catch (error) {
             console.error('Error:', error);
         }
-
-
     };
-
-
 
     const closeAddPopup = () => {
         setAddPopupVisible(false);
@@ -263,6 +266,22 @@ const ProductListing = () => {
 
     const openColorPopup = () => {
         setColorPopupVisible(true);
+    };
+
+    // Pagination logic
+    const totalPages = Math.ceil(addedProducts.length / recordsPerPage);
+    const displayedProducts = addedProducts.slice(currentPage * recordsPerPage, (currentPage + 1) * recordsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages - 1) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
     };
 
     if (loading) {
@@ -356,6 +375,7 @@ const ProductListing = () => {
                     <Button onClick={closeSuccessPopup}>Close</Button>
                 </Modal.Section>
             </Modal>
+
             {/* Delete Confirmation Popup */}
             <Modal
                 open={deletePopupVisible}
@@ -363,17 +383,18 @@ const ProductListing = () => {
                 title="Confirm Deletion"
             >
                 <Modal.Section>
-                    <p>Your Data Deleted successfully!</p>
-                    <Button onClick={() => setDeletePopupVisible(false)}>Close</Button>
-
+                    <p>Are you sure you want to delete this product?</p>
+                    <Button onClick={confirmDelete}>Yes, Delete</Button>
+                    <Button onClick={() => setDeletePopupVisible(false)}>Cancel</Button>
                 </Modal.Section>
             </Modal>
+
             {/* Products Table */}
             <Card title="Added Products" sectioned>
                 <DataTable
-                    columnContentTypes={['text', 'text', 'text']}
+                    columnContentTypes={['text', 'text', 'text', 'text']}
                     headings={['Product', 'Design Group', 'Color Group', 'Action']}
-                    rows={addedProducts.map(item => [
+                    rows={displayedProducts.map(item => [
                         item.title,
                         <Button onClick={() => { setCurrentProduct(item.id); openDesignPopup(); }}>{item.designs ? 'Edit Design' : 'Add Design'}</Button>,
                         <Button onClick={() => { setCurrentProduct(item.id); openColorPopup(); }}>{item.colors ? 'Edit Colors' : 'Add Color'}</Button>,
@@ -381,6 +402,22 @@ const ProductListing = () => {
                     ])}
                 />
             </Card>
+
+            {/* Pagination Controls */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+                <Button disabled={currentPage === 0} onClick={handlePreviousPage}>Previous</Button>
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <Button
+                        key={index}
+                        pressed={index === currentPage}
+                        onClick={() => setCurrentPage(index)}
+                        style={{ margin: '0 0.5rem' }}
+                    >
+                        {index + 1}
+                    </Button>
+                ))}
+                <Button disabled={currentPage === totalPages - 1} onClick={handleNextPage}>Next</Button>
+            </div>
         </Layout>
     );
 };

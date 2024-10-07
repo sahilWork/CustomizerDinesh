@@ -679,3 +679,6 @@ svg {
 a.icon-color-wrapper[title="White"] .back {
     border: 1px solid grey;
 }
+.logoList .logo {
+    cursor: pointer;
+}

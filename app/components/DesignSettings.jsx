@@ -5,6 +5,8 @@ const DesignSettings = () => {
   const [inputs, setInputs] = useState([{ id: Date.now(), name: '' }]);
   const [group, setGroup] = useState('');
   const [popupVisible, setPopupVisible] = useState(false); // Popup state
+  const [currentPage, setCurrentPage] = useState(0);
+  const recordsPerPage = 10;
 
   useEffect(() => {
     const fetchDesignSettings = async () => {
@@ -70,12 +72,28 @@ const DesignSettings = () => {
     setPopupVisible(false);
   };
 
+  // Pagination logic
+  const totalPages = Math.ceil(inputs.length / recordsPerPage);
+  const displayedInputs = inputs.slice(currentPage * recordsPerPage, (currentPage + 1) * recordsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   return (
     <div>
       <Card title="Design Groups" sectioned>
         <form onSubmit={handleSubmit}>
           <FormLayout>
-            {inputs.map(input => (
+            {displayedInputs.map(input => (
               <div key={input.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
                 <TextField
                   value={input.name}
@@ -92,6 +110,21 @@ const DesignSettings = () => {
           </FormLayout>
         </form>
       </Card>
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
+        <Button disabled={currentPage === 0} onClick={handlePreviousPage}>Previous</Button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Button
+            key={index}
+            pressed={index === currentPage}
+            onClick={() => setCurrentPage(index)}
+            style={{ margin: '0 0.5rem' }}
+          >
+            {index + 1}
+          </Button>
+        ))}
+        <Button disabled={currentPage === totalPages - 1} onClick={handleNextPage}>Next</Button>
+      </div>
 
       <Modal
         open={popupVisible}
