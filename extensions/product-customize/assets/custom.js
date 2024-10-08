@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    let tunnelUrl = 'https://b596-2405-201-5004-7835-c0ee-cd3f-4080-6d6f.ngrok-free.app';
-
+    let tunnelUrl = 'https://46cf-2401-4900-1f32-7be6-b577-8dff-eed8-c76.ngrok-free.app';
     function fetchSVG(url, container) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -31,31 +30,28 @@ $(document).ready(function(){
         xhr.send();
     }
 
+    function generateUniqueId() {
+        const timestamp = new Date().getTime(); // Get current timestamp
+        const randomNum = Math.floor(Math.random() * 1000); // Generate random number
+        return `id_${timestamp}_${randomNum}`; // Create unique ID
+    }
+
     var pathArray = window.location.pathname.split('/');
     var folder = pathArray[pathArray.length - 1];
-        
     if (!folder) {
         console.error('No folder specified in the URL.');
         return;
     }
-
     var apiUrl = 'https://slateblue-goldfish-894680.hostingersite.com/custom-app/svgget.php?keyword=' + encodeURIComponent(folder);
     var baseUrl = 'https://slateblue-goldfish-894680.hostingersite.com/custom-app/'; 
-    
-    // Show the loader before starting the API call
     $('#loader').show(); 
-    
     $.getJSON(apiUrl, function(data) {
         var svgSlider = $('#svg-slider');
-        
-        // Hide the loader once we receive the response
         $('#loader').hide(); 
-
         if (data.error) {
             console.error(data.error);
             return;
         }
-
         // Append main folder SVGs
         if (data.main_folder && data.main_folder.length > 0) {
 
@@ -65,7 +61,6 @@ $(document).ready(function(){
                 fetchSVG(fullUrl, svgSlider);
             });
         }
-
         // Append sidebar SVGs
         if (data.sidebar && data.sidebar.length > 0) {
             data.sidebar.forEach(function(svgFile) {
@@ -74,8 +69,6 @@ $(document).ready(function(){
                 sideBarSend(fullUrl, takeName);
             });
         }
-
-        // Initialize the slider after all SVGs are loaded
         setTimeout(function() {
             svgSlider.slick({
                 dots: true,            
@@ -87,7 +80,6 @@ $(document).ready(function(){
             });
         }, 1500); 
     }).fail(function() {
-        // Hide the loader in case of error
         $('#loader').hide(); 
         console.error('Failed to fetch SVG data.');
     });
@@ -113,13 +105,13 @@ $(document).ready(function(){
 
         if (isMatch) {
             
-            $('#ratingButton').show(); // Show the button
+            $('#ratingButton').show();
         } else {
-            $('#ratingButton').hide(); // Hide the button
+            $('#ratingButton').hide(); 
         }
 
         const productDataDiv = $('#productData');
-        productDataDiv.empty(); // Clear previous content
+        productDataDiv.empty(); 
 
         let designs = '';
         let colors = '';
@@ -130,12 +122,8 @@ $(document).ready(function(){
                 const colors = product.colors || 'N/A'; 
                
                 $('.product-design-name').html(product.title.toUpperCase());
-                // Splitting the designs and colors by commas
                 const designArray = designs.split(',').map(design => design.trim());
                 const colorArray = colors.split(',').map(color => color.trim());
-                
-                
-                // Creating the HTML for designs and colors
                 const designHtml = designArray.map(design => `<p id="${design.toLowerCase().replace(/\s+/g, '-')}" class="designLink" link="${design.toLowerCase().replace(/\s+/g, '-')}">${design}</p>`).join('');
                 const colorHtml = colorArray.map(color => `<p id="${color.toLowerCase().replace(/\s+/g, '-')}" class="colorLink" link="${color.toLowerCase().replace(/\s+/g, '-')}">${color}</p>`).join('');
                 
@@ -280,7 +268,7 @@ $(document).ready(function(){
             $(this).addClass('active');
             $('.menu-design').show();
             $('.custom-text').show();
-            setTimeout(function(){
+            setTimeout(function(){ 
                 if(linkData.indexOf('right') > -1){
                     let positions = rightSvg.split('-');
                     $('svg.'+linkData+' .custom-logo').attr('width', positions[0]);
@@ -306,21 +294,14 @@ $(document).ready(function(){
         });
  
         $('.color-list').on('click', '.icon-color-wrapper', function() {
-            // Remove selected class from all and add to the clicked one 
             $('.icon-color-wrapper').removeClass('selected');   
             var titleColor = $(this).attr('title'); 
             $('.colour-selected-label').text(titleColor);
             $(this).addClass('selected');
-
-            // Get the background color of the selected swatch
             var colorName = $(this).find('.back').css('background-color');
-
-            // Assuming you have a way to get the correct link
             var link = $('.colorLink.active').attr('link');
             var getId = $('#custom-color-swatches g[link="'+link+'"]').attr('id');
             getId = getId.split('Group_')[1];
-
-            // Change the fill color of the SVG path
             $('#Pattern_'+getId+'_000 path').attr('fill', colorName);
         });
 
@@ -353,46 +334,91 @@ $(document).ready(function(){
             }
         });
 
-        // $('body').on('click', '.addMine', function(){
-        //     let svgMine = $('svg.sleeve-right').parent().html();
-        //     // $('.estimatedItem form').prepend('<input type="hidden" name="properties[SVG Image]" value="'+svgMine+'" />');
-        //     var svg = $('svg.sleeve-right').prop('outerHTML');
-
-        //     // Create a Blob from the SVG string
-        //     var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-
-        //     // Create a URL for the Blob
-        //     var url = URL.createObjectURL(blob);
-        //     console.log(url); 
-        // });
-
         $('body').on('click', '.addMine', function() {
             const classes = ['.front-center', '.sleeve-left', '.back-center', '.sleeve-right'];
             const urls = [];
-        
+            let svg = '';
+            let loop = 1;
+            
             classes.forEach((className) => {
-                var svg = $(className).prop('outerHTML');
-                var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
-                var url = URL.createObjectURL(blob);
-                urls.push(url);
-                console.log(`URL for ${className}: ${url}`);
+                if(loop == 1){
+                    svg += $('svg'+className).prop('outerHTML');
+                }else{
+                    svg += '---'+$('svg'+className).prop('outerHTML');
+                }
+                loop++;
             });
-            console.log('All URLs:', urls);
+           
+
+            setTimeout(function(){
+                const formdata = new FormData();
+                let uniqueId = generateUniqueId();
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'properties[customizer_id]',
+                    value: uniqueId
+                }).prependTo('#customcartform');
+                formdata.append("unique_id", uniqueId);
+                formdata.append("svg_data", svg);
+                const requestOptions = {
+                  method: "POST",
+                  body: formdata,
+                  redirect: "follow"
+                };
+                
+                fetch(baseUrl+"customized-svg-upload.php", requestOptions)
+                .then((response) => response.text())
+                .then((result) => {
+                    result = JSON.parse(result);
+                    let paths = result.svg_path;
+                    paths.forEach((path) => {
+                        let imageUrl = baseUrl + path; 
+                        $('<input>').attr({
+                            type: 'hidden',
+                            name: 'properties[customizer_images][]', 
+                            value: imageUrl
+                        }).prependTo('#customcartform');
+                    });
+                    
+                    $('#customcartform').submit();
+                })
+                .catch((error) => console.error(error)); 
+            }, 1000);
         });
+        
     });
 
+    const unitPrice = parseFloat(document.getElementById('unit-price').value);
+    function updateTotal() {
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        // Ensure quantity is at least 50
+        if (quantity < 50) {
+            quantity = 50;
+            quantityInput.value = 50;
+        }
+        const totalPrice = (unitPrice * quantity).toFixed(2);
+        document.getElementById('total-price').innerText = `$${totalPrice}`;
+    }
     function increaseQuantity() {
-        var qtyInput = document.getElementById('quantity');
-        qtyInput.value = parseInt(qtyInput.value) + 1;
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        quantity += 1;
+        quantityInput.value = quantity;
+        updateTotal();
     }
 
     function decreaseQuantity() {
-        var qtyInput = document.getElementById('quantity');
-        if (qtyInput.value > 1) {
-            qtyInput.value = parseInt(qtyInput.value) - 1;
+        const quantityInput = document.getElementById('quantity');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 50) {
+            quantity -= 1; 
+            quantityInput.value = quantity;
+            updateTotal();
         }
     }
-
+    // Initialize total price on page load
+    updateTotal();
     function validateQuantity() {
         var qtyInput = document.getElementById('quantity');
         if (qtyInput.value < 50) {

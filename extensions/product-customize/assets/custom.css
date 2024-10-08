@@ -614,13 +614,16 @@ div#colorTab {
     font-size: 12px;
     font-weight: 900;
     border-radius: 3px;
-    height: 50px;
-    padding: 0 2rem;
-    margin-left: 15px;
+    padding: 1rem 2rem;
+    margin: 10px 15px;
     text-transform: uppercase;
     cursor: pointer;
     -webkit-transition: border .3s ease-in-out;
     transition: border .3s ease-in-out;
+    display: block;
+    text-decoration: none;
+    line-height: normal;
+    text-align: center;
 }
 
 .save-btn .btn:hover {

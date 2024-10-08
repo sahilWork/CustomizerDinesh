@@ -1,0 +1,48 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        let baseUrl = 'https://slateblue-goldfish-894680.hostingersite.com/custom-app';
+        let url = window.location.href;
+        if(url.indexOf('/cart') > -1){
+            $.ajax({
+                type: 'GET',
+                url: '/cart.js',
+                dataType: 'json', 
+                success: function (data) { 
+                    $.each(data.items, function(index, value) {
+                        console.log(value);
+                        let id = value.properties['customizer_id'];
+                        const formdata = new FormData();
+                        formdata.append("unique_id", id);
+
+                        const requestOptions = {
+                        method: "POST",
+                        body: formdata,
+                        redirect: "follow"
+                        };
+
+                        fetch(baseUrl+"/customized-svg-get.php", requestOptions)
+                        .then((response) => response.text())
+                        .then((result) => {
+                            let data= JSON.parse(result);
+                            data = data.data[0];
+                            let frontImage = baseUrl+'/'+data.file_name;
+                            let count = index + 1;
+                            $('#CartItem-'+count+' .cart-item__media').html('<object type="image/svg+xml" data="'+frontImage+'" width="100" height="100"></object>');
+                        })
+                        .catch((error) => console.error(error));
+                    });
+                } 
+            });
+        }
+    }); 
+</script>
+{% schema %}
+{
+  "name": "Customizer Script",
+  "target": "head",
+  "settings": [
+    
+  ]
+}
+{% endschema %}
