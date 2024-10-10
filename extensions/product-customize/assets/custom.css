@@ -921,7 +921,10 @@ a.icon-color-wrapper[title="White"] .back {
     .close-btn button#closePopup {
         height: 35px;
     }
-
+    .input-number-block .number-input {
+        width: 35px;
+        font-size: 15px;
+    }
 
 
 }
