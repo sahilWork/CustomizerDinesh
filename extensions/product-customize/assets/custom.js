@@ -129,10 +129,12 @@ $(document).ready(function(){
                 
                 productDataDiv.append(`
                     <div id="designContent" class="tabContent" style="display: none;">
+                    <div class="designtabremove remove" style="cursor: pointer;"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/cross.png" width="20px" height="20px" /></div>
                         <h4 style="margin: 0px; text-transform: uppercase; font-weight: bold;">Groups</h4>
                         ${designHtml}
                     </div>
                     <div id="colorContent" class="tabContent" style="display: none;">
+                     <div class="colortabremove remove" style="cursor: pointer;"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/cross.png" width="20px" height="20px" /></div>
                         <h4 style="margin: 0px; text-transform: uppercase; font-weight: bold;">Groups</h4>
                         ${colorHtml}
                     </div>
@@ -146,7 +148,25 @@ $(document).ready(function(){
         method: "GET",
         redirect: "follow"
         };
+        $('body').on('click', '.colortabremove', function(){
+           $('#colorContent').hide();
+           $('.menu-color').hide();
+        });
+        $('body').on('click', '.designtabremove', function(){
+            $('#designContent').hide();
+            $('.menu-design').hide();
+            $('.custom-text').hide();
+            $('.dynamicMine').hide();
 
+         });
+         $('body').on('click', '.menucolorremove', function(){
+            $('.menu-color').hide();
+         });
+         $('body').on('click', '.menudesignremove', function(){
+            $('.menu-design').hide();
+            $('.custom-text').hide();
+            $('.dynamicMine').hide();
+         });
         $('#ratingButton').on('click', function() {
             $('.product').addClass('active');
             $('#ratingPopup').addClass('active');

@@ -12,9 +12,9 @@
  Customize
 </button>
 
-<div id="ratingPopup">
+<div id="ratingPopup" style="padding: 120px 30px 50px; background-image: linear-gradient(270deg,#fff,#eee); position: fixed; top: 0; left: 0; transform: translate(0%, 0%); z-index: 10; width: 100%; height: 100% box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px; right: 0; height: 100vh!important;">
  <div class="tabs-section-app">
-  <div style="cursor: pointer; width: 90px; padding: 15px 10px; background: #000; color: #b3b3b3; border-radius: 6px 0 0px 6px;">
+  <div class="main-customizer-menus" style="cursor: pointer; width: 90px; padding: 15px 10px; background: #000; color: #b3b3b3; border-radius: 6px 0 0px 6px;">
     <div id="designTab" style="flex: 1; text-align: center;">Design</div>
     <div id="colorTab" style="flex: 1; text-align: center;">Colors</div>
     <input class="btn-reset" type="button" value="Reset" class="btn" />
@@ -24,6 +24,7 @@
     <!-- Content will be dynamically generated -->
   </div>
   <div class="menu-color" style="display: none;">
+  <div class="menucolorremove remove" style="cursor: pointer;"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/cross.png" width="20px" height="20px" /></div>
 <h4 class="customizer-heading">Colors</h4>
   <div class="flex-space-between selectedColor"><label class="item-title">Selected: </label><div class="colour-selected" style="background: rgb(23, 23, 23); border: none;"></div><label class="font bold colour-selected-label">Black</label></div>
   <hr class="colours-bottom-line">
@@ -39,6 +40,7 @@
   <hr class="colours-bottom-line">
   </div>
   <div class="menu-design" style="display: none;">
+  <div class="menudesignremove remove" style="cursor: pointer;"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/cross.png" width="20px" height="20px" /></div>
      <div class="logo-list">
         <h3 class="section-title active" link="dynamiclogos">Custom Logo</h3>
         <h3 class="section-title" link="dynamicName">Custom Name</h3>
