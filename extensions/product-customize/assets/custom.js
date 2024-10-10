@@ -226,10 +226,10 @@ $(document).ready(function(){
             //logo reset
             var logoSrc = $('.logo').attr('src');
             let getLink = $('.designLink').attr('link');
-            $('svg.'+getLink+' .custom-logo').attr('href', '');
+            $('svg .custom-logo').attr('href', '');
             //text reset
             const userInput = $('#customTextName').val(); 
-            $('svg.'+getLink+' .svgText').text('');  
+            $('svg .svgText').text('');  
         });
         $('body').on('click', '.logo-list .section-title', function(){
             $('.logo-list .section-title').removeClass('active');
