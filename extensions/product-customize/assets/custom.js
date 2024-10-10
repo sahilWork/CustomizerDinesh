@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    let tunnelUrl = 'https://46cf-2401-4900-1f32-7be6-b577-8dff-eed8-c76.ngrok-free.app';
+    let tunnelUrl = 'https://f0a9-2401-4900-1c6a-2ab9-3450-568d-3a67-fed7.ngrok-free.app';
     function fetchSVG(url, container) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -149,12 +149,12 @@ $(document).ready(function(){
 
         $('#ratingButton').on('click', function() {
             $('.product').addClass('active');
-            $('#ratingPopup').show();
+            $('#ratingPopup').addClass('active');
         });
 
         $('#closePopup').on('click', function() {
             $('.product').removeClass('active');
-            $('#ratingPopup').hide();
+            $('#ratingPopup').removeClass('active');
         });
 
         $('#designTab').on('click', function() {
@@ -197,7 +197,20 @@ $(document).ready(function(){
             let getLink = $('.designLink.active').attr('link');
             $('svg.'+getLink+' .custom-logo').attr('href', logoSrc);
         });
-
+        $('body').on('click', '.btn-reset', function(){
+            //color reset
+            var link = $('.colorLink').attr('link');
+            var getId = $('#custom-color-swatches g[link="'+link+'"]').attr('id');
+            getId = getId.split('Group_')[1];
+            $('svg g path').attr('fill', 'none');
+            //logo reset
+            var logoSrc = $('.logo').attr('src');
+            let getLink = $('.designLink').attr('link');
+            $('svg.'+getLink+' .custom-logo').attr('href', '');
+            //text reset
+            const userInput = $('#customTextName').val(); 
+            $('svg.'+getLink+' .svgText').text('');  
+        });
         $('body').on('click', '.logo-list .section-title', function(){
             $('.logo-list .section-title').removeClass('active');
             $(this).addClass('active');
@@ -284,7 +297,7 @@ $(document).ready(function(){
                 }
         }, 1000);
         });
-
+        
         $('body').on('change', '#colorPicker', function(){
             var colorName = $(this).val();
             var link = $('.colorLink.active').attr('link');
@@ -388,24 +401,24 @@ $(document).ready(function(){
         
     });
 
-    const unitPrice = parseFloat(document.getElementById('unit-price').value);
-    function updateTotal() {
-        const quantityInput = document.getElementById('quantity');
-        let quantity = parseInt(quantityInput.value);
-        // Ensure quantity is at least 50
-        if (quantity < 50) {
-            quantity = 50;
-            quantityInput.value = 50;
-        }
-        const totalPrice = (unitPrice * quantity).toFixed(2);
-        document.getElementById('total-price').innerText = `$${totalPrice}`;
-    }
+    // const unitPrice = parseFloat(document.getElementById('unit-price').value);
+    // function updateTotal() {
+    //     const quantityInput = document.getElementById('quantity');
+    //     let quantity = parseInt(quantityInput.value);
+    //     // Ensure quantity is at least 50
+    //     if (quantity < 50) {
+    //         quantity = 50;
+    //         quantityInput.value = 50;
+    //     }
+    //     const totalPrice = (unitPrice * quantity).toFixed(2);
+    //     document.getElementById('total-price').innerText = `$${totalPrice}`;
+    // }
     function increaseQuantity() {
         const quantityInput = document.getElementById('quantity');
         let quantity = parseInt(quantityInput.value);
         quantity += 1;
         quantityInput.value = quantity;
-        updateTotal();
+        //updateTotal();
     }
 
     function decreaseQuantity() {
@@ -414,11 +427,11 @@ $(document).ready(function(){
         if (quantity > 50) {
             quantity -= 1; 
             quantityInput.value = quantity;
-            updateTotal();
+            //updateTotal();
         }
     }
     // Initialize total price on page load
-    updateTotal();
+    //updateTotal();
     function validateQuantity() {
         var qtyInput = document.getElementById('quantity');
         if (qtyInput.value < 50) {

@@ -625,6 +625,24 @@ div#colorTab {
     line-height: normal;
     text-align: center;
 }
+div#ratingPopup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate(0%, 0%);
+    width: 100%;
+    height: 0;
+    background-image: linear-gradient(270deg,#fff,#eee);
+    right: 0;
+    padding: 120px 50px 30px;
+    z-index: 999;
+    visibility: hidden;
+}
+
+div#ratingPopup.active {
+    visibility: visible;
+    height: 100vh;
+}
 
 .save-btn .btn:hover {
     box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
