@@ -8,6 +8,7 @@
     border-radius: 0 6px 6px 0;
     height: 100%;
     max-width: 230px;
+    z-index: 1;
 }
 .custom-text {
     display: flex;
@@ -18,7 +19,8 @@
     border-left: 1px solid #00000014;
     border-radius: 0 6px 6px 0;
     height: 100%;
-    max-width: 200px;
+    max-width: 210px;
+    z-index: 1;
 }
 input#textInput {
     border: 1px solid #ebe9e9;
@@ -113,13 +115,20 @@ input#textInput {
 }
 
 .mineSvg {
-    width: 700px;
+    width: 500px;
     margin-right: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
 }
-
+.product_detaile {
+    width: 210px;
+    margin-left: auto;
+}
 .main_color_bar {
     display: flex;
-    width: 30%;
+    width: 40%;
 }
 .mineSvg .slick-prev:before,
 .mineSvg .slick-next:before {
@@ -143,9 +152,12 @@ a.icon-color-wrapper {
     display: block !important;
     cursor: pointer;
 }
+.mineSvg .slick-slide {
+    width: 500px !important;
+}
 .mineSvg svg {
-  width: 100%;
-  height: 700px;
+    width: 100%;
+    height: 450px;
 }
 p.designLink {
     cursor: pointer;
@@ -160,12 +172,13 @@ p.colorLink {
 }
 
 .product-design-name {
-    font-size: 17px;
+    font-size: 14px;
     line-height: 17px;
     text-align: center;
     padding: 15px 9px;
     border-bottom: 1px solid #fff;
     color: #000;
+    font-weight: 700;
 }
 
 .recycled-fabrics {
@@ -232,6 +245,7 @@ p.colorLink {
     font-size: 12px;
     line-height: 26px;
     text-align: center;
+    margin: 0;
 }
 .input-number-block {
     display: -webkit-box;
@@ -526,7 +540,9 @@ h3.section-title {
 }
 .logoList {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 9px;
 }
 
 div#designContent p, div#colorContent p {
@@ -539,6 +555,11 @@ div#designContent p, div#colorContent p {
     color: #808080;
     padding-bottom: 10px;
     text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 3px;
 }
 
 div#designContent p::after, div#colorContent p::after {
@@ -702,4 +723,219 @@ a.icon-color-wrapper[title="White"] .back {
 }
 .logoList .logo {
     cursor: pointer;
+}
+.remove {
+    text-align: center;
+    margin: auto;
+}   
+
+
+/* Responsive */
+
+@media (max-width: 1040px) {
+    .mineSvg button.slick-arrow {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 810px) {
+    .mineSvg {
+        top: 35%;
+    }
+    div#designTab {
+        padding-bottom: 7px;
+        margin-bottom: 0;
+    }
+    input.btn-reset {
+        margin-top: 0;
+        width: auto;
+        padding: 0 20px;
+    }
+    .main-customizer-menus {
+        border-radius: 0 !important;
+        position: absolute;
+        bottom: 0;
+        width: 100% !important;
+        left: 0;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 40px;
+        padding: 10px !important;
+    }
+    p.colorLink {
+        width: 80px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 100%;
+    }
+    .tabContent {
+        padding: 10px;
+        max-width: 100%;
+        overflow-x: scroll;
+        display: flex;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 55px;
+        height: 90px;
+        z-index: 1;
+    }
+    div#designContent p::after, div#colorContent p::after {
+        display: none;
+    }
+    div#designContent h4, div#colorContent h4 {
+        display: none;
+    }
+    .colorLink svg {
+        width: 50px;
+        margin: auto;
+    }
+    div#designContent p, div#colorContent p {
+        padding-bottom: 0;
+        margin-right: 10px !important;
+    }
+    div#designTab::after {
+        display: none;
+    }
+    div#designTab {
+        padding-bottom: 0;
+        flex: unset !important;
+    }
+    div#colorTab {
+        flex: unset !important;
+    }
+    .remove {
+        border-right: 1px solid #0000001c;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-right: 10px;
+        margin-right: 10px;
+        margin-left: 0;
+    }
+    .main_color_bar {
+        width: 100%;
+    }
+    .product_detaile {
+        position: absolute;
+        bottom: 90px;
+        right: 0;
+        width: 100%;
+    }
+    .dynamic-pricing {
+        max-width: 100%;
+        margin: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    form#customcartform {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .input-number-block.success .number-input {
+        border: unset;
+    }
+    .input-number-block {
+        border: 1px solid #00000017;
+        padding: 3px 10px;
+        border-radius: 7px;
+        height: 100%;
+    }
+    .input-number-block .number-input {
+        height: 27px;
+        margin: 0 !important;
+    }
+    .menu-color {
+        height: auto;
+        max-width: 100%;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        bottom: 55px;
+        padding: 15px 15px 10px;
+    }
+    .menu-design {
+        height: auto;
+        max-width: 100%;
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+        bottom: 55px;
+        left: 0;
+        row-gap: 10px;
+    }
+    .custom-text {
+        border-radius: 0;
+        max-width: 100%;
+        z-index: 1;
+        position: absolute;
+        height: auto;
+        bottom: 155px;
+        width: 100%;
+        left: 0;
+        border-bottom: 1px solid #0000001c;
+    }
+    hr.colours-bottom-line {
+        margin: 8px 0 !important;
+    }
+    .customColorMine h5 {
+        margin: 0 0px 5px 0 !important;
+    }
+    .customizer-heading {
+        margin: 0  0 10px 0;
+    }
+    .save-btn .btn {
+        padding: 1rem 10px;
+        margin: 10px 5px 10px 0;
+    }
+    .input-number-block a {
+        width: 25px;
+        height: 35px;
+        line-height: 35px;
+    }
+    .logo-list {
+        flex-direction: row;
+        gap: 20px;
+    }
+    .menu-design h3.section-title {
+        margin: 0 !important;
+        padding: 7px 10px;
+        border: 1px solid #0000002b;
+        border-radius: 7px;
+    }
+    .menu-design h3.section-title.active {
+        border-color: #000;
+    }
+    div#designContent p.designLink {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 100%;
+    }
+    .main-header-btn {
+        left: 15px;
+    }
+    .close-btn button#closePopup {
+        height: 35px;
+    }
+
+
+
+}
+
+@media (max-width: 567px) {
+
+    .mineSvg svg {
+        height: 350px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .mineSvg {
+        top: 32%;
+    }
 }

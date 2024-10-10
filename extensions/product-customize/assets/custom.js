@@ -124,7 +124,7 @@ $(document).ready(function(){
                 $('.product-design-name').html(product.title.toUpperCase());
                 const designArray = designs.split(',').map(design => design.trim());
                 const colorArray = colors.split(',').map(color => color.trim());
-                const designHtml = designArray.map(design => `<p id="${design.toLowerCase().replace(/\s+/g, '-')}" class="designLink" link="${design.toLowerCase().replace(/\s+/g, '-')}">${design}</p>`).join('');
+                const designHtml = designArray.map(design => `<p id="${design.toLowerCase().replace(/\s+/g, '-')}" class="designLink" link="${design.toLowerCase().replace(/\s+/g, '-')}"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/decoration-add.png" class="decoration-img">${design}</p>`).join('');
                 const colorHtml = colorArray.map(color => `<p id="${color.toLowerCase().replace(/\s+/g, '-')}" class="colorLink" link="${color.toLowerCase().replace(/\s+/g, '-')}">${color}</p>`).join('');
                 
                 productDataDiv.append(`
