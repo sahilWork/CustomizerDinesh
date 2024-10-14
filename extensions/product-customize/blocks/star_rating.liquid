@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="{{ 'custom.js' | asset_url }}" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
 <button id="ratingButton" style="display: none; color:{{ block.settings.colour }}; background-color:{{ block.settings.bg_colour }}; width: 250px; height: 50px; cursor: pointer;">
@@ -46,23 +46,19 @@
         <h3 class="section-title" link="dynamicName">Custom Name</h3>
     </div>
   </div>
+  
   <div class="custom-text" style="display:none;">
     <div class="dynamicMine dynamiclogos">
+    <div class="logolistremove remove" style="cursor: pointer;"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/cross.png" width="20px" height="20px" /></div>
         <div class="dynamicText">
           <h4>Logos</h4>
         </div>
         <div class="logoList">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/preview-removebg-preview.png" id="logo1" class="logo" alt="Logo 1">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/preview__1_-removebg-preview.png" id="logo2" class="logo" alt="Logo 2">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/logo-1.png" id="logo3" class="logo" alt="Logo 3">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/logo__2.png" id="logo4" class="logo" alt="Logo 4">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/logo__3.png" id="logo5" class="logo" alt="Logo 5">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/logo__4.png" id="logo6" class="logo" alt="Logo 6">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/logo_5.png" id="logo7" class="logo" alt="Logo 7">
-          <img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/logo_6.png" id="logo8" class="logo" alt="Logo 8">
+         
 
         </div>
     </div>
+
     <div class="dynamicMine dynamicName" style="display: none;">
       <div class="customNamefield">
         <label for="customTextName">Custom Name</label>
@@ -72,6 +68,11 @@
         <a title="White" class="dynamicNameColor"><div class="back" style="background: rgb(255, 255, 255);"></div></a><a title="Black" class="icon-color-wrapper selected"><div class="back" style="background: rgb(23, 23, 23);"></div></a><a title="Dark Grey" class="icon-color-wrapper "><div class="back" style="background: rgb(83, 87, 90);"></div></a><a title="Light Grey" class="icon-color-wrapper "><div class="back" style="background: rgb(152, 152, 154);"></div></a><a title="Brown" class="icon-color-wrapper "><div class="back" style="background: rgb(80, 54, 41);"></div></a><a title="Dark Green" class="icon-color-wrapper "><div class="back" style="background: rgb(18, 71, 52);"></div></a><a title="Green" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 117, 74);"></div></a><a title="Lime Green" class="icon-color-wrapper "><div class="back" style="background: rgb(118, 188, 33);"></div></a><a title="Midnight Teal" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 89, 88);"></div></a><a title="Teal" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 137, 150);"></div></a><a title="Navy" class="icon-color-wrapper "><div class="back" style="background: rgb(32, 41, 69);"></div></a><a title="Royal Blue" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 87, 163);"></div></a><a title="Sky Blue" class="icon-color-wrapper "><div class="back" style="background: rgb(0, 154, 222);"></div></a><a title="Light Blue" class="icon-color-wrapper "><div class="back" style="background: rgb(146, 192, 233);"></div></a><a title="Dark Purple" class="icon-color-wrapper "><div class="back" style="background: rgb(81, 12, 118);"></div></a><a title="Maroon" class="icon-color-wrapper "><div class="back" style="background: rgb(114, 37, 61);"></div></a><a title="Dark Red" class="icon-color-wrapper "><div class="back" style="background: rgb(171, 0, 51);"></div></a><a title="Red" class="icon-color-wrapper "><div class="back" style="background: rgb(234, 0, 41);"></div></a><a title="Orange" class="icon-color-wrapper "><div class="back" style="background: rgb(244, 137, 52);"></div></a><a title="Gold Yellow" class="icon-color-wrapper "><div class="back" style="background: rgb(255, 183, 27);"></div></a><a title="Light Yellow" class="icon-color-wrapper "><div class="back" style="background: rgb(252, 220, 62);"></div></a><a title="Vegas Gold" class="icon-color-wrapper "><div class="back" style="background: rgb(201, 181, 119);"></div></a><a title="Off White" class="icon-color-wrapper "><div class="back" style="background: rgb(241, 225, 207);"></div></a><a title="more" class="icon-color-wrapper hidden-pc"><div class="back" style="background: url(&quot;/static/icons/colours/more.svg&quot;) no-repeat;"></div></a>
       </div>
     </div>
+  </div>
+  <div class="logo-design" style="display: none;">
+    <div class="rotateremove remove" style="cursor: pointer;"><img src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/cross.png" width="20px" height="20px" /></div>
+    <h3 class="section-title" >Rotate Your Logo</h3>
+    <button id="rotateButton" class="btn" style="cursor: pointer;"><i class="fa fa-rotate-right"></i></button>
   </div>
   </div>
 
@@ -90,11 +91,7 @@
             <div class="product-estimatedItemQty">
                 <p class="estimatedItem-title">Estimated quantity</p>
                 <div class="estimatedItem">
-                  <form action="/cart/add" id="customcartform" method="post" enctype="multipart/form-data">
-                      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                      <input type="hidden" id="unit-price" value="{{ product.price | money_without_currency }}">
-
-                      <div class="input-number-block estimatedItemQty-input-part success">
+                 <div class="input-number-block estimatedItemQty-input-part success">
                           <a onclick="decreaseQuantity()">
                               <img class="icon" src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/rectangle.png">
                           </a>
@@ -102,12 +99,10 @@
                           <a onclick="increaseQuantity()">
                               <img class="icon" src="https://cdn.shopify.com/s/files/1/0904/5262/3636/files/rectangle-add.png">
                           </a>
-                      </div>
-                      <div class="save-btn">
-                      <a href="javascript:void(0)" class="btn addMine">Add to Cart</a>
-                      <button class="btn" type="submit" style="display: none;">Add to Cart</button>
-                      </div>
-                  </form>
+                  </div>
+                  <div class="save-btn">
+                  <button class="btn" id="open-popup">Request a Quote</button>
+                  </div>
                 </div>
             </div>
             
@@ -122,6 +117,42 @@
   </div>
  
   </div>
+</div>
+<!-- Popup Modal -->
+<div id="quote-popup" style="display:none;">
+    <div class="popup-content">
+        <span class="close" id="close-popup">&times;</span>
+        <div class="request_form_main">
+          <div class="quote-slider-main" style="width: 45%; padding: 50px;">
+          <div class="quote-slider slider-container"></div>
+          <div class="product-name" style="text-align: center;">{{ product.title }}</div>
+          <div style="text-align: center;" id="quote-quantity"></div>
+          </div>
+          <div class="quote-form-main" style="width: 45%;">
+          <h2 style="text-align:center;">Request a Quote</h2>
+            <form id="quoteForm">
+                <label for="businessName">Business Name:</label>
+                <input type="text" id="businessName" name="businessName" class="input-field" required>
+
+                <label for="contactPerson">Contact Person:</label>
+                <input type="text" id="contactPerson" name="contactPerson" class="input-field" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" class="input-field" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" class="input-field" required>
+
+                <label for="address">Business Address:</label>
+                <textarea id="address" name="address" class="textarea-field" required></textarea>
+                <input type="hidden" name="product_qty" id="product_qty" value="">
+                <input type="hidden" name="image_urls" id="image_urls" value="">
+                <input type="hidden" name="product_name" id="product_name" value="{{ product.title }}">
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+          </div>
+       </div>  
+    </div>
 </div>
 
 {% schema %}

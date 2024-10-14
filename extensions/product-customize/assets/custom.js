@@ -1,5 +1,24 @@
 $(document).ready(function(){
-    let tunnelUrl = 'https://f0a9-2401-4900-1c6a-2ab9-3450-568d-3a67-fed7.ngrok-free.app';
+    let tunnelUrl = 'https://45a9-2401-4900-1c6a-2ab9-652e-5720-c97c-7405.ngrok-free.app';  
+    const formdata = new FormData();
+
+const requestOptions1 = {
+  method: "POST",
+  body: formdata,
+  redirect: "follow"
+};
+
+fetch("https://45a9-2401-4900-1c6a-2ab9-652e-5720-c97c-7405.ngrok-free.app/api/getlogos", requestOptions1)
+  .then((response) => response.text())
+  .then((result) => {
+    let data = JSON.parse(result);
+    let logos = data.logos;
+    logos.forEach(logo => {
+        $('.logoList').append('<img src="'+tunnelUrl+logo.imagepath+'" class="logo" />');    
+    });
+  })
+  .catch((error) => console.error(error));
+    
     function fetchSVG(url, container) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
@@ -78,7 +97,7 @@ $(document).ready(function(){
                 prevArrow: '<button class="slick-prev">←</button>', 
                 nextArrow: '<button class="slick-next">→</button>'  
             });
-        }, 1500); 
+        }, 500); 
     }).fail(function() {
         $('#loader').hide(); 
         console.error('Failed to fetch SVG data.');
@@ -153,6 +172,7 @@ $(document).ready(function(){
            $('.menu-color').hide();
         });
         $('body').on('click', '.designtabremove', function(){
+            $('.logo-design').hide();
             $('#designContent').hide();
             $('.menu-design').hide();
             $('.custom-text').hide();
@@ -163,6 +183,7 @@ $(document).ready(function(){
             $('.menu-color').hide();
          });
          $('body').on('click', '.menudesignremove', function(){
+            $('.logo-design').hide();
             $('.menu-design').hide();
             $('.custom-text').hide();
             $('.dynamicMine').hide();
@@ -211,8 +232,15 @@ $(document).ready(function(){
             let getLink = $('.designLink.active').attr('link');
             $('svg.'+getLink+' .svgText').text(userInput);  
         });
-
+        $('body').on('click', '.logolistremove', function() {
+            $('.dynamiclogos').hide();
+            $('.logo-design').hide();
+        });
+        $('body').on('click', '.rotateremove', function() {
+            $('.logo-design').hide();
+        });
         $('body').on('click', '.logo', function() {
+            $('.logo-design').show();
             var logoSrc = $(this).attr('src');
             let getLink = $('.designLink.active').attr('link');
             $('svg.'+getLink+' .custom-logo').attr('href', logoSrc);
@@ -238,7 +266,11 @@ $(document).ready(function(){
             $('.dynamicMine').hide();
             $('.'+getLink).show();
         });
-
+        let rotation = 0;
+        $('body').on('click', '#rotateButton', function(){
+        rotation -= 90; 
+        $('.custom-logo').css('transform', 'rotate(' + rotation + 'deg)'); 
+        });
         $('body').on('click', '#front-center', function() {
             $('#svgText').attr('x', "50%"); 
             $('#svgText').attr('y', "60%"); 
@@ -367,60 +399,140 @@ $(document).ready(function(){
             }
         });
 
-        $('body').on('click', '.addMine', function() {
-            const classes = ['.front-center', '.sleeve-left', '.back-center', '.sleeve-right'];
-            const urls = [];
-            let svg = '';
-            let loop = 1;
+        // $('body').on('click', '.addMine', function() {
+        //     const classes = ['.front-center', '.sleeve-left', '.back-center', '.sleeve-right'];
+        //     const urls = [];
+        //     let svg = '';
+        //     let loop = 1;
             
-            classes.forEach((className) => {
-                if(loop == 1){
-                    svg += $('svg'+className).prop('outerHTML');
-                }else{
-                    svg += '---'+$('svg'+className).prop('outerHTML');
-                }
-                loop++;
-            });
+        //     classes.forEach((className) => {
+        //         if(loop == 1){
+        //             svg += $('svg'+className).prop('outerHTML');
+        //         }else{
+        //             svg += '---'+$('svg'+className).prop('outerHTML');
+        //         }
+        //         loop++;
+        //     });
            
 
-            setTimeout(function(){
+        //     setTimeout(function(){
+        //         const formdata = new FormData();
+        //         let uniqueId = generateUniqueId();
+        //         $('<input>').attr({
+        //             type: 'hidden',
+        //             name: 'properties[customizer_id]',
+        //             value: uniqueId
+        //         }).prependTo('#customcartform');
+        //         formdata.append("unique_id", uniqueId);
+        //         formdata.append("svg_data", svg);
+        //         const requestOptions = {
+        //           method: "POST",
+        //           body: formdata,
+        //           redirect: "follow"
+        //         };
+                
+        //         fetch(baseUrl+"customized-svg-upload.php", requestOptions)
+        //         .then((response) => response.text())
+        //         .then((result) => {
+        //             result = JSON.parse(result);
+        //             let paths = result.svg_path;
+        //             paths.forEach((path) => {
+        //                 let imageUrl = baseUrl + path; 
+        //                 $('<input>').attr({
+        //                     type: 'hidden',
+        //                     name: 'properties[customizer_images][]', 
+        //                     value: imageUrl
+        //                 }).prependTo('#customcartform');
+        //             });
+                    
+        //             $('#customcartform').submit();
+        //         })
+        //         .catch((error) => console.error(error)); 
+        //     }, 1000);
+        // });
+        $('body').on('click', '#open-popup', function() {
+            var quantity = $('#quantity').val(); // Input se value lein
+            $('#quote-quantity').html("<strong>Quantity :</strong> " + quantity);
+            $('#product_qty').val(quantity);
+            const classes = ['.front-center', '.sleeve-left', '.back-center', '.sleeve-right'];
+            let svg = '';
+            let imageUrls = []; // Declare this array here
+            classes.forEach((className, index) => {
+                svg += index === 0 ? $('svg' + className).prop('outerHTML') : '---' + $('svg' + className).prop('outerHTML');
+            });
+            setTimeout(function() {
                 const formdata = new FormData();
                 let uniqueId = generateUniqueId();
-                $('<input>').attr({
-                    type: 'hidden',
-                    name: 'properties[customizer_id]',
-                    value: uniqueId
-                }).prependTo('#customcartform');
                 formdata.append("unique_id", uniqueId);
                 formdata.append("svg_data", svg);
                 const requestOptions = {
-                  method: "POST",
-                  body: formdata,
-                  redirect: "follow"
+                    method: "POST",
+                    body: formdata,
+                    redirect: "follow"
                 };
-                
-                fetch(baseUrl+"customized-svg-upload.php", requestOptions)
-                .then((response) => response.text())
-                .then((result) => {
-                    result = JSON.parse(result);
-                    let paths = result.svg_path;
-                    paths.forEach((path) => {
-                        let imageUrl = baseUrl + path; 
-                        $('<input>').attr({
-                            type: 'hidden',
-                            name: 'properties[customizer_images][]', 
-                            value: imageUrl
-                        }).prependTo('#customcartform');
-                    });
-                    
-                    $('#customcartform').submit();
-                })
-                .catch((error) => console.error(error)); 
+                fetch(baseUrl + "customized-svg-upload.php", requestOptions)
+                    .then((response) => response.text())
+                    .then((result) => {
+                        result = JSON.parse(result);
+                        let paths = result.svg_path;
+        
+                        paths.forEach((path) => {
+                            let imageUrl = baseUrl + path;
+                            imageUrls.push(imageUrl);
+                        });
+                        if(imageUrls){
+                            $('#quote-popup').fadeIn();
+                        }
+                        $('#image_urls').val(imageUrls.join(','));
+                        $('.quote-slider').empty();
+                        imageUrls.forEach((imageUrl) => {
+                            $('.quote-slider').append(`<div><iframe src="${imageUrl}" height="200px" width="200px"></iframe></div>`);
+                        });
+                        $('.quote-slider').slick({
+                            dots: true,           
+                            infinite: true,       
+                            speed: 500,           
+                            slidesToShow: 1,      
+                            slidesToScroll: 1     
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
             }, 1000);
         });
-        
-    });
 
+       
+            $('body').on('click', '#close-popup', function() {
+                $('#quote-popup').fadeOut();
+            });
+            $(window).on('click', function(event) {
+                if ($(event.target).is('#quote-popup')) {
+                    $('#quote-popup').fadeOut();
+                }
+            });
+            $('body').on('submit', '#quoteForm', function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: tunnelUrl+'/api/sendQuote',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify($(this).serializeArray().reduce((obj, item) => {
+                        obj[item.name] = item.value;
+                        return obj;
+                    }, {})),
+                    success: function(response) {
+                        alert('Quote request sent successfully!');
+
+                        $('#quote-popup').fadeOut(); 
+                        setTimeout(() => {
+                            window.location.href = ""; 
+                        }, 200);
+                    },
+                    error: function(error) {
+                        alert('Error sending quote request.');
+                    }
+                });
+            });
+    });
     // const unitPrice = parseFloat(document.getElementById('unit-price').value);
     // function updateTotal() {
     //     const quantityInput = document.getElementById('quantity');
@@ -458,3 +570,6 @@ $(document).ready(function(){
             qtyInput.value = 50;
         }
     }
+
+    
+    
